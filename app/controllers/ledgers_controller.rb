@@ -1,12 +1,12 @@
 class LedgersController < ApplicationController
   def index
-    @ledgers = Ledger.ActionController
-    json_response(@ledgers)
+    @ledgers = Ledger.all
+    render json: @ledgers
   end
 
   def show
     @ledger = Ledger.find(params[:id])
-    json_response(@ledger)
+    render json:@ledger
   end
 
   def create
@@ -34,6 +34,6 @@ class LedgersController < ApplicationController
 
   private
     def ledger_params
-      params.permit(:name)
+      params.permit(:account_name)
     end
 end

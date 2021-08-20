@@ -2,12 +2,12 @@ class CreditCardsController < ApplicationController
   def index
     @ledger = Ledger.find(params[:ledger_id])
     @credit_cards = CreditCard.relative(@ledger.id)
-    json_response(@credit_cards)
+    render json: @credit_cards
   end
 
   def show
     @credit_card = CreditCard.find(params[:id])
-    json_response(@credit_card)
+    render json: @credit_card
   end
 
   def create

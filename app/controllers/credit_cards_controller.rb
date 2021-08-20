@@ -17,33 +17,32 @@ class CreditCardsController < ApplicationController
 
   def update
     @credit_card = CreditCard.find(params[:id])
-    if ((params[:username] == @credit_card.username) && (params[:author] == @credit_card.author))
-      @credit_card.update!(credit_card_params)
+    if @credit_card.update!(credit_card_params)
       render status: 200, json: {
-        message: "This credit card has been updated successfully"
-      }
+        message: "This credit card information has been updated successfully"
+      } 
     else
       render status: 403, json: {
-        message: "credit_card not updated; confirm that you are the author"
+        message: "Credit card information did not succesfully update"
       }
     end
   end
 
   def destroy
     @credit_card = CreditCard.find(params[:id])
-    if @credit_card.username == @credit_card.author && @credit_card.delete
+    if @credit_card.destroy
       render status: 200, json: {
         message: "This credit_card has been successfully deleted"
       }
     else
       render status: 403, json: {
-        message: "Unable to delete credit_card; confirm that you are the author"
+        message: "Credit card was not deleted"
       }
     end
   end
 
   private
     def credit_card_params
-      params.permit(:credit_limit, :annual_fees, :apr_purchases, :apr_cash, :apr_promotional, :set_day_of_payment)
+      params.permit(:credit_limit, :apr_purchases, :set_day_of_payment)
     end
 end

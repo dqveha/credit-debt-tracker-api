@@ -17,10 +17,7 @@ ActiveRecord::Schema.define(version: 2021_08_20_154342) do
 
   create_table "credit_cards", force: :cascade do |t|
     t.float "credit_limit"
-    t.float "annual_fees"
     t.float "apr_purchases"
-    t.float "apr_cash"
-    t.float "apr_promotional"
     t.date "set_day_of_payment"
     t.integer "ledger_id"
     t.datetime "created_at", null: false

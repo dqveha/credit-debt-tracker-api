@@ -10,11 +10,10 @@ class CreditCardsController < ApplicationController
     json_response(@credit_card)
   end
 
-  def calc_month_interest
-    @ledger = Ledger.find(params[:ledger_id])
-    @credit_card = CreditCard.find(params[:id])
-    @cc_month_interest = CreditCard.calculate_month_interest(@credit_card.id)
-    render json: { month_interest: @cc_month_interest }
+  def calculate_month_interest
+    @credit_card = CreditCard.find(params[:credit_card_id])
+    @cc_month_interest = CreditCard.calculate_month_interest(@credit_card.id).round(2)
+    render json: {:credit_id => @credit_card.id, :credit_balance => @credit_card.credit_balance, :apr_purchases => @credit_card.apr_purchases, :ledger_id => @credit_card.ledger_id, :set_day_of_payment => @credit_card.set_day_of_payment, month_interest: @cc_month_interest }
   end
 
   def create

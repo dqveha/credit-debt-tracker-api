@@ -1,7 +1,7 @@
 class CreateCreditCard < ActiveRecord::Migration[5.2]
   def change
     create_table :credit_cards do |t|
-      t.float :credit_limit
+      t.integer :credit_balance
       # t.float :annual_fees
       t.float :apr_purchases
       # t.float :apr_cash

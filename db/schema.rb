@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_08_20_154342) do
   enable_extension "plpgsql"
 
   create_table "credit_cards", force: :cascade do |t|
-    t.float "credit_limit"
+    t.integer "credit_balance"
     t.float "apr_purchases"
     t.date "set_day_of_payment"
     t.integer "ledger_id"

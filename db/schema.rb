@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_08_20_154342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.float "credit_limit"
+    t.float "annual_fees"
+    t.float "apr_purchases"
+    t.float "apr_cash"
+    t.float "apr_promotional"
+    t.date "set_day_of_payment"
+    t.integer "ledger_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ledgers", force: :cascade do |t|
+    t.string "account_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "credit_cards", "ledgers"
 end

@@ -5,9 +5,11 @@ ruby '2.6.5'
 
 gem 'faker'
 
-gem 'lockbox'
+gem 'devise', '~> 4.8'
 
-gem 'blind_index'
+gem 'lockbox', '~> 0.6.5'
+
+gem 'blind_index', '~> 2.2'
 
 gem 'dotenv-rails', groups: [:development, :test]
 

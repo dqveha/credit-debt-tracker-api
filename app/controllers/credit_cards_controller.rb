@@ -2,16 +2,17 @@ class CreditCardsController < ApplicationController
   def index
     @ledger = Ledger.find(params[:ledger_id])
     @credit_cards = CreditCard.relative(@ledger.id)
-    render json: @credit_cards
+    json_response(@credit_cards)
   end
 
   def show
     @credit_card = CreditCard.find(params[:id])
-    render json: @credit_card
+    json_response(@credit_card)
   end
 
   def create
-    @credit_card = CreditCard.create!(credit_card_params)
+    @ledger = Ledger.find(params[:ledger_id])
+    @credit_card = CreditCard.create!({:credit_limit => params[:credit_limit], :apr_purchases => params[:apr_purchases], :ledger_id => @ledger.id, :set_day_of_payment => params[:set_day_of_payment]})
     json_response(@credit_card, :created)
   end
 

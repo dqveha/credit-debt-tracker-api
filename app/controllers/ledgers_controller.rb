@@ -1,17 +1,17 @@
 class LedgersController < ApplicationController
   def index
     @ledgers = Ledger.all
-    render json: @ledgers
+    json_response(@ledgers)
   end
 
   def show
     @ledger = Ledger.find(params[:id])
-    render json:@ledger
+    json_response(@ledger)
   end
 
   def create
     @ledger = Ledger.create!(ledger_params)
-    json_response(@ledger, :created)
+    json_response(@ledger)
   end
 
   def update

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Response
 
+  protect_from_forgery prepend: true
+
   rescue_from ActiveRecord::RecordNotFound do |exception|
     json_response({ message: exception.message }, :not_found)
   end

@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include Response
 
   rescue_from ActiveRecord::RecordNotFound do |exception|

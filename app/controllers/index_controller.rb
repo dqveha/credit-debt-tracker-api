@@ -1,4 +1,4 @@
-class IndexController < ActionController::API
+class IndexController < ApplicationController
   def index
     @hello = "hello"
     render :index

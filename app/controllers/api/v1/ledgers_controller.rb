@@ -1,30 +1,41 @@
 class Api::V1::LedgersController < Api::V1::BaseController
+  before_action :set_ledger, only: [:show, :update, :destroy]
+  
   def index
-    @ledgers = Ledger.all
+    @ledgers = @user.ledgers
     json_response(@ledgers)
   end
 
   def show
-    @ledger = Ledger.find(params[:id])
     json_response(@ledger)
   end
 
   def create
-    @ledger = Ledger.create!(ledger_params)
-    json_response(@ledger)
+    @ledger = @user.ledgers.build(ledger_params)
+    if @ledger.save
+      render :show, status: :created
+    else
+      render status: :unprocessable_entity, json: { 
+        message: @ledger.errors.full_messages 
+      } 
+    end
+    # json_response(@ledger)
   end
 
   def update
-    @ledger = Ledger.find(params[:id])
+
     if @ledger.update!(ledger_params)
       render status: 200, json: {
         message: "This ledger has been updated successfully"
-      } 
+      }
+    else
+      render status: :unprocessable_entity, json: {
+        message: @ledger.errors.full_messages
+      }
     end
   end
 
   def destroy
-    @ledger = Ledger.find(params[:id])
     if @ledger.destroy
       render status: 200, json: {
         message: "This ledger has been successfully deleted"
@@ -36,5 +47,8 @@ class Api::V1::LedgersController < Api::V1::BaseController
     def ledger_params
       params.permit(:account_name)
     end
-  
+
+    def set_ledger
+      @ledger = Ledger.find(params[:id])
+    end
 end

@@ -9,5 +9,7 @@
 Ledger.destroy_all
 CreditCard.destroy_all
 
+User.create(email: "google@gmail.com", password: "password")
+
 ledger1 = Ledger.create(account_name: "Dave")
 credit_card1 = CreditCard.create(credit_balance: 11800, apr_purchases: 0.2299, set_day_of_payment: "2021-08-20", ledger_id: ledger1.id)

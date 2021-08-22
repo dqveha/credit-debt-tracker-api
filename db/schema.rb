@@ -47,5 +47,5 @@ ActiveRecord::Schema.define(version: 2021_08_22_005353) do
   end
 
   add_foreign_key "credit_cards", "ledgers"
-  add_foreign_key "ledgers", "users"
+  add_foreign_key "ledgers", "users", on_delete: :cascade
 end

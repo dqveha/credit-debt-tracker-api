@@ -1,5 +1,7 @@
 class Api::V1::LedgersController < Api::V1::BaseController
   before_action :set_ledger, only: [:show, :update, :destroy]
+
+  before_action :authorize_ledger, only: [:show, :update, :destroy]
   
   def index
     @ledger = @user.ledger
@@ -11,19 +13,18 @@ class Api::V1::LedgersController < Api::V1::BaseController
   end
 
   def create
-    @ledger = @user.ledgers.build(ledger_params)
+    # @user = User.find(params[:user_id])
+    @ledger = Ledger.create(account_name: params[:account_name], user_id: @user.id)
     if @ledger.save
-      render :show, status: :created
+      render :index, status: :created
     else
       render status: :unprocessable_entity, json: { 
         message: @ledger.errors.full_messages 
       } 
     end
-    # json_response(@ledger)
   end
 
   def update
-
     if @ledger.update!(ledger_params)
       render status: 200, json: {
         message: "This ledger has been updated successfully"
@@ -44,6 +45,10 @@ class Api::V1::LedgersController < Api::V1::BaseController
   end
 
   private
+    def authorize_ledger
+      render json: { message: "Unauthorized" }, status: :unauthorized unless @user == @ledger.user
+    end
+
     def ledger_params
       params.permit(:account_name)
     end

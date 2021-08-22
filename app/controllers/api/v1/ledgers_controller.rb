@@ -2,8 +2,8 @@ class Api::V1::LedgersController < Api::V1::BaseController
   before_action :set_ledger, only: [:show, :update, :destroy]
   
   def index
-    @ledgers = @user.ledgers
-    json_response(@ledgers)
+    @ledger = @user.ledger
+    json_response(@ledger)
   end
 
   def show

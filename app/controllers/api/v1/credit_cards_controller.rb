@@ -1,4 +1,4 @@
-class CreditCardsController < ApplicationController
+class Api::V1::CreditCardsController < Api::V1::BaseController
   def index
     @ledger = Ledger.find(params[:ledger_id])
     @credit_cards = CreditCard.relative(@ledger.id)

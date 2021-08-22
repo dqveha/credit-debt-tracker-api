@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/index' => 'index#index'
+
+  root to: "index#index"
+  
   devise_for :users
 
   devise_scope :user do
@@ -9,9 +13,7 @@ Rails.application.routes.draw do
     resource :private_api_keys, only: :update
   end
 
-  root to: "index#index"
 
-  get '/index' => 'index#index'
 
   namespace :api do
     namespace :v1 do

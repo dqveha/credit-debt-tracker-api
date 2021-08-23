@@ -13,16 +13,19 @@ class Api::V1::LedgersController < Api::V1::BaseController
   end
 
   def create
-    # @user = User.find(params[:user_id])
-    @ledger = Ledger.create(account_name: params[:account_name], user_id: @user.id)
+    @user = User.find(params[:user_id])
+    @ledger = Ledger.create!(account_name: params[:account_name], user_id: @user.id)
     if @ledger.save
-      render :index, status: :created
+      render status: 200, json: {
+        message: "This ledger has been created successfully"
+      }
     else
       render status: :unprocessable_entity, json: { 
         message: @ledger.errors.full_messages 
       } 
     end
   end
+    
 
   def update
     if @ledger.update!(ledger_params)

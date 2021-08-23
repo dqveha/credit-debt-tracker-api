@@ -8,9 +8,11 @@
 
 ##
 
-This is the eleventh independent project (Ruby, Week 6) assigned by Epicodus to build an API of our choice. Credit Debt Tracker API is inspired due to my lack of understanding with how credit card interest works (and /**ahem**/ a few poor purchases within the past year).
+This is the eleventh independent project (Ruby, Week 6) assigned by Epicodus to build an API of our choice. I was inspired to create this 'Credit Debt Tracker API' after seeing my accumlating debt increase, and wanted to be more active to understand how the interest charge was calculated.
 
 This API is designed for a user to create an account within the web application, receive an API token, and then use the API key as a bearer token to make requests to the API. The API is also CORS activated.
+
+---
 
 ## Technologies Used
 
@@ -196,17 +198,19 @@ http://localhost:3000/api/v1/ledgers/1/credit_cards/1/calculate_month_interest
 
 ## Bugs:
 
-1. If requesting to POST a new ledger, it will return a 500 internal server error if a ledger already exists. While the intention is not to return a 500 internal server error, it is intended for a one-to-one relationship with a user account and its ledger.
+1. Currently, no bugs are found. Please let me know if you come across any!
 
 ## Plans for improvement:
 
 1. Add routes to calculate interest for Cash Advance APR and Promotional APR
-2. Calculate average interest 
+2. Calculate average interest
+
 ```
 Example:
 
 [(15 days * 2500 balance + 15 days * 1900 balance)/30 days] * (0.1499 APR / 365) * 30 day billing period = $25.08
 ```
+
 3. Calculate 'X' amount of months and a year
 
 ---

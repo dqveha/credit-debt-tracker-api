@@ -196,11 +196,11 @@ http://localhost:3000/api/v1/ledgers/1/credit_cards/1/calculate_month_interest
 
 ---
 
-## Bugs:
+## Bugs
 
 1. Currently, no bugs are found. Please let me know if you come across any!
 
-## Plans for improvement:
+## Plans for improvement
 
 1. Add routes to calculate interest for Cash Advance APR and Promotional APR
 2. Calculate average interest
@@ -212,6 +212,21 @@ Example:
 ```
 
 3. Calculate 'X' amount of months and a year
+
+## Resources
+
+To offer more context at how I built this project, I will leave links below that have helped me greatly through it all - hoping it may benefit someone as well:
+
+1. [https://github.com/BrookeZK/CoffeeTrackerAPI.Solution-API-ReadMe-Example](https://github.com/BrookeZK/CoffeeTrackerAPI.Solution-API-ReadMe-Example)
+   - README style and API documentation
+2. [https://www.nerdwallet.com/article/credit-cards/how-is-credit-card-interest-calculated](https://www.nerdwallet.com/article/credit-cards/how-is-credit-card-interest-calculated)
+   - Learn how to calculate credit card interest
+3. [https://stevepolito.design/blog/build-an-api-in-rails-with-authentication/](https://stevepolito.design/blog/build-an-api-in-rails-with-authentication/)
+   - Amazing guide for authentication
+4. [https://www.learnhowtoprogram.com/ruby-and-rails/building-an-api](https://www.learnhowtoprogram.com/ruby-and-rails/building-an-api)
+   - Epicodus curriculum in developing an API on Ruby on Rails
+5. [https://dzone.com/articles/rails-associations](https://dzone.com/articles/rails-associations)
+   - A Rails guide that simplifies associations, and helps to understand one-to-one relationship
 
 ---
 

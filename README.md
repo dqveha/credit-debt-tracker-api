@@ -69,7 +69,7 @@ Base URL: http://localhost:3000
 
 ..........................................................................................
 
-### **HTTP Request Structure for 'Ledgers'**
+### **HTTP Request Structure for Ledgers**
 
 ```
 GET     /api/v1/ledgers
@@ -86,13 +86,15 @@ DELETE 	/api/v1/ledgers/{id}
 | account_name | string  |  none   |         true          | Account name for the ledger        |
 |   user_id    | integer |  none   |         false         | User account related to the ledger |
 
-#### **Example Query**
+..........................................................................................
+
+### **Example: 'GET' Ledger Query**
 
 ```
 http://localhost:3000/api/v1/ledgers/
 ```
 
-#### **Sample JSON Response**
+#### **Sample 'GET' Ledger JSON Response**
 
 ```
 {
@@ -104,13 +106,71 @@ http://localhost:3000/api/v1/ledgers/
 }
 ```
 
-====================================================
+..........................................................................................
 
-### **HTTP Request Structure for 'Credit Cards'**
-
-**a)**
+### **Example: 'POST' Ledger Query**
 
 ```
+http://localhost:3000/api/v1/ledgers/?account_name=Example
+
+
+**
+IMPORTANT NOTE: Ledger is a one-to-one relationship with a user account. A user's ledger must be deleted first through the DELETE pathway, and then have the opportunity to POST. Therefore, it is recommended to PUT the ledger account if the `account_name` needs to be changed.
+```
+
+#### **Sample 'POST' Ledger JSON Response**
+
+```
+{
+"id": 1,
+"account_name": "Example",
+"created_at": "2021-08-22T20:17:25.276Z",
+"updated_at": "2021-08-22T20:17:25.276Z",
+"user_id": 1
+}
+```
+
+..........................................................................................
+
+### **Example: 'PUT' Ledger Query**
+
+```
+http://localhost:3000/api/v1/ledgers/1/?account_name=Example
+```
+
+#### **Sample 'PUT' JSON Ledger Response**
+
+```
+Before:
+
+{
+"id": 1,
+"account_name": "Dave",
+"created_at": "2021-08-22T20:17:25.276Z",
+"updated_at": "2021-08-22T20:17:25.276Z",
+"user_id": 1
+}
+```
+
+```
+After:
+
+{
+"id": 1,
+"account_name": "Example",
+"created_at": "2021-08-22T20:17:25.276Z",
+"updated_at": "2021-08-26T02:51:33.708Z",
+"user_id": 1
+}
+```
+
+====================================================
+
+### **HTTP Request Structure for Credit Cards**
+
+```
+a)
+
 GET     /api/v1/ledgers/{ledger_id}/credit_cards
 POST 	/api/v1/ledgers/{ledger_id}/credit_cards
 GET 	/api/v1/ledgers/{ledger_id}/credit_cards/{credit_card_id}
@@ -118,9 +178,9 @@ PUT  	/api/v1/ledgers/{ledger_id}/credit_cards/{credit_card_id}
 DELETE 	/api/v1/ledgers/{ledger_id}/credit_cards/{credit_card_id}
 ```
 
-**b)**
-
 ```
+b)
+
 GET   	/api/v1/ledgers/{ledger_id}/credit_cards/{credit_card_id}/calculate_month_interest
 ```
 
@@ -136,29 +196,30 @@ GET   	/api/v1/ledgers/{ledger_id}/credit_cards/{credit_card_id}/calculate_month
 | set_day_of_payment | date | none | true | Date of payment
 
 **b)**
-| Parameter | Type | Default | Required | Description|
+| Parameter | Type | Default | Required for POST/PUT | Description|
 | :---: | :---: | :---: | :---: | --- |
 | month_interest | float | none | false | Calculated month interest based off of credit_balance, and apr_purchases
+..........................................................................................
 
-#### **Example Query**
-
-**a)**
+#### **Example: 'GET' Credit Cards Query**
 
 ```
+a)
+
 http://localhost:3000/api/v1/ledgers/1/credit_cards
 ```
 
-**b)**
-
 ```
+b)
+
 http://localhost:3000/api/v1/ledgers/1/credit_cards/1/calculate_month_interest
 ```
 
-#### **Sample JSON Response**
-
-**a)**
+#### **Sample 'GET' Credit Cards JSON Response**
 
 ```
+a)
+
 [
     {
         "id": 1,
@@ -181,9 +242,9 @@ http://localhost:3000/api/v1/ledgers/1/credit_cards/1/calculate_month_interest
 ]
 ```
 
-**b)**
-
 ```
+b)
+
 {
     "credit_id": 1,
     "credit_balance": 11800,
@@ -191,6 +252,66 @@ http://localhost:3000/api/v1/ledgers/1/credit_cards/1/calculate_month_interest
     "ledger_id": 1,
     "set_day_of_payment": "2021-08-20",
     "month_interest": 222.97
+}
+```
+
+..........................................................................................
+
+### **Example: 'POST' Credit Cards Query**
+
+```
+http://localhost:3000/api/v1/ledgers/1/credit_cards/?credit_balance=2300&apr_purchases=0.1399&set_day_of_payment=2021-08-25
+```
+
+#### **Sample 'POST' Credit Cards JSON Response**
+
+```
+{
+    "id": 3,
+    "credit_balance": 2300,
+    "apr_purchases": 0.1399,
+    "set_day_of_payment": "2021-08-25",
+    "ledger_id": 1,
+    "created_at": "2021-08-26T03:05:45.055Z",
+    "updated_at": "2021-08-26T03:05:45.055Z"
+}
+```
+
+..........................................................................................
+
+### **Example: 'PUT' Credit Cards Query**
+
+```
+http://localhost:3000/api/v1/ledgers/1/credit_cards/3/?credit_balance=3300&apr_purchases=0.0999&set_day_of_payment=2021-09-25
+```
+
+#### **Sample 'PUT' JSON Credit Cards Response**
+
+```
+Before:
+
+{
+    "id": 3,
+    "credit_balance": 2300,
+    "apr_purchases": 0.1399,
+    "set_day_of_payment": "2021-08-25",
+    "ledger_id": 1,
+    "created_at": "2021-08-26T03:05:45.055Z",
+    "updated_at": "2021-08-26T03:05:45.055Z"
+}
+```
+
+```
+After:
+
+{
+    "id": 3,
+    "credit_balance": 3300,
+    "apr_purchases": 0.0999,
+    "set_day_of_payment": "2021-09-25",
+    "ledger_id": 1,
+    "created_at": "2021-08-26T03:05:45.055Z",
+    "updated_at": "2021-08-26T03:07:57.250Z"
 }
 ```
 

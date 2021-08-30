@@ -286,7 +286,7 @@ http://localhost:3000/api/v1/ledgers/1/credit_cards/?credit_balance=2300&apr_pur
 http://localhost:3000/api/v1/ledgers/1/credit_cards/3/?credit_balance=3300&apr_purchases=0.0999&set_day_of_payment=2021-09-25
 ```
 
-#### **Sample 'PUT' JSON Credit Cards Response**
+#### **Sample 'PUT' Credit Cards JSON Response**
 
 ```
 Before:

@@ -79,7 +79,7 @@ PUT  	/api/v1/ledgers/{id}
 DELETE 	/api/v1/ledgers/{id}
 ```
 
-#### **Parameters**
+### **Parameters**
 
 |  Parameter   |  Type   | Default | Required for POST/PUT | Description                        |
 | :----------: | :-----: | :-----: | :-------------------: | ---------------------------------- |
@@ -138,7 +138,7 @@ IMPORTANT NOTE: Ledger is a one-to-one relationship with a user account. A user'
 http://localhost:3000/api/v1/ledgers/1/?account_name=Example
 ```
 
-#### **Sample 'PUT' JSON Ledger Response**
+#### **Sample 'PUT' Ledger JSON Response**
 
 ```
 Before:
@@ -184,7 +184,7 @@ b)
 GET   	/api/v1/ledgers/{ledger_id}/credit_cards/{credit_card_id}/calculate_month_interest
 ```
 
-#### **Parameters**
+### **Parameters**
 
 **a)**
 | Parameter | Type | Default | Required for POST/PUT | Description |
@@ -199,9 +199,10 @@ GET   	/api/v1/ledgers/{ledger_id}/credit_cards/{credit_card_id}/calculate_month
 | Parameter | Type | Default | Required for POST/PUT | Description|
 | :---: | :---: | :---: | :---: | --- |
 | month_interest | float | none | false | Calculated month interest based off of credit_balance, and apr_purchases
+
 ..........................................................................................
 
-#### **Example: 'GET' Credit Cards Query**
+### **Example: 'GET' Credit Cards Query**
 
 ```
 a)
